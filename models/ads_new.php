@@ -3,20 +3,6 @@
 require_once "dbcon.php";
 require_once "ads.php";
 
-function check_if_intersects(&$dbcon, $tablename, $polygon)
-{
-	$stmt = $dbcon->prepare(
-		"SELECT count(1) 
-        FROM " . $tablename . " "
-        . "WHERE st_intersects(coords, GeomFromText(\"" . $polygon . "\"))");
-    $stmt->execute();
-
-	$num_rows = ($stmt->fetch(PDO::FETCH_NUM)[0] > 0);
-	$stmt->closeCursor();
-	return $num_rows;
-}
-
-
 function reserve_area($data)
 {
 	// check if the area is free; reserve it
@@ -24,14 +10,14 @@ function reserve_area($data)
 	$db = new DBConnection();
 	$db->dbcon->beginTransaction();
 
-	if (check_if_intersects($db->dbcon, "ads", $data['coords']))
+	if (check_if_intersects($db->dbcon, "ads", $data['coords']) > 0)
 	{
 		$db->dbcon->rollBack();
 		//return false;
 		return "Area is not free!";
 	}
 
-	if (check_if_intersects($db->dbcon, "newads", $data['coords']))
+	if (check_if_intersects($db->dbcon, "newads", $data['coords']) > 0)
 	{
 		// try to free out unpaid newads
 		$stmt = $db->dbcon->prepare(
@@ -41,7 +27,7 @@ function reserve_area($data)
         $stmt->closeCursor();
 
         // check again
-		if (check_if_intersects($db->dbcon, "newads", $data['coords']))
+		if (check_if_intersects($db->dbcon, "newads", $data['coords']) > 0)
 		{
 			$db->dbcon->rollBack();
 			//return false;
@@ -50,7 +36,7 @@ function reserve_area($data)
 	}
 
 	// upload file and set $data['filename']
-	$is_uploaded = upload_picture($_FILES["picture"], $data['filename']);
+	$is_uploaded = upload_picture($_FILES['picture'], $data['filename']);
 	if ($is_uploaded !== true)
 	{
 		//return false;

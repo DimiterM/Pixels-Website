@@ -28,7 +28,7 @@ switch ($request['action'])
 * 
 * INSERT: set new values from params
 * 
-* UPDATE: by id - set new values from params ("" do not count)
+* UPDATE: by id -> set new values from params ("" do not count)
 * 
 * DELETE: by id
 * 
