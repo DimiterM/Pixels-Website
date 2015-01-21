@@ -39,19 +39,18 @@ function reserve_area($data)
 	$is_uploaded = upload_picture($_FILES['picture'], $data['filename']);
 	if ($is_uploaded !== true)
 	{
+		$db->dbcon->rollBack();
 		//return false;
 		return $is_uploaded;
 	}
 
 	// save in newads table
-	$stmt = $db->dbcon->prepare(
-		"INSERT INTO newads 
-		(name, link, coords, filename, datetime) VALUES 
-		(" . $data['name'] . ", " . $data['link'] . ", 
-			GeomFromText(\"" . $data['coords'] . "\"), " 
-			. $data['filename'] . ", NOW())");
-    $stmt->execute(array());
-    $stmt->closeCursor();
+	$db->insert("newads", 
+		array("name", "link", "coords", "filename", "datetime"), 
+		array($db->dbcon->quote($data['name']), $db->dbcon->quote($data['link']), 
+				"GeomFromText(\"" . $data['coords'] . "\")", 
+				$db->dbcon->quote($data['filename']), "NOW()")
+	);
 
     $id = $db->dbcon->lastInsertId();
     $db->dbcon->commit();
@@ -98,11 +97,15 @@ function upload_picture($file_to_upload, &$filename)
 
 function accept_new_ad($id)
 {
-	$ads_model = new Ads("ads");
-	$newads_model = new Ads("newads");
+	//$ads_model = new Ads("ads");
+	//$newads_model = new Ads("newads");
+	$db = new DBConnection();
+	$db->dbcon->beginTransaction();
 
 	// get ad from newads table
-	$ad = $newads_model->get_details($id);
+	//$ad = $newads_model->get_details($id);
+	$ad = $db->select("newads", 
+		array("name", "link", "astext(coords) as coords", "filename"), $id);
 
 	// filename
 	global $NEWADS_IMAGES_DIR, $ADS_IMAGES_DIR;
@@ -120,8 +123,20 @@ function accept_new_ad($id)
 
 	rename($ad_full_filename, $target_file);
 
-	return $ads_model->insert_ad(
-		$ad['name'], $ad['link'], $ad['coords'], $ad['filename']);
+	//$is_accepted = $ads_model->insert_ad(
+	//	$ad['name'], $ad['link'], $ad['coords'], $ad['filename']);
+	$is_accepted = $db->insert("ads", 
+		array("name", "link", "coords", "filename", "datetime"), 
+		array($db->dbcon->quote($ad['name']), $db->dbcon->quote($ad['link']), 
+				"GeomFromText(\"" . $ad['coords'] . "\")", 
+				$db->dbcon->quote($ad['filename']), "NOW()")
+	);
+
+	//$newads_model->delete_ad($id);
+	$db->delete("newads", $id);
+	
+	$db->dbcon->commit();
+	return $is_accepted;
 }
 
 

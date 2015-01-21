@@ -13,11 +13,6 @@ $USER = "root";
 $PASS = "";
 
 
-// Admin profile
-$ADMIN_USERNAME = "admin";
-$ADMIN_PASSWORD = ""; // TODO
-
-
 // Directories
 $ADS_IMAGES_DIR = $_SERVER['DOCUMENT_ROOT'] . "images/ads/";
 $NEWADS_IMAGES_DIR = $_SERVER['DOCUMENT_ROOT'] . "images/newads/";
