@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Buy pixels - More than just 10^6 pixels</title>
+	<title>News posts - More than just 10^6 pixels</title>
 </head>
 <body>
 

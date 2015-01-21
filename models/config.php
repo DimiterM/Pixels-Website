@@ -4,12 +4,18 @@
 $PIC_WIDTH = 1340;
 $PIC_HEIGHT = 750;
 
+
 // Database connection
 $HOST = "localhost"; 
 $PORT = 3306;
 $DB = "pixelsdb";
 $USER = "root";
 $PASS = "";
+
+
+// Admin profile
+$ADMIN_USERNAME = "admin";
+$ADMIN_PASSWORD = ""; // TODO
 
 
 // Directories
