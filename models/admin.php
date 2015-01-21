@@ -7,7 +7,7 @@ class Admin extends DBConnection
 {
 	const SALT_SIZE_BYTES = 32;
 
-	public function login($username, $password)
+	public function verify($username, $password)
 	{
 		$admin_data = $this->select("users", 
 			array("id", "username", "password", "salt"), 0
@@ -19,11 +19,6 @@ class Admin extends DBConnection
 			return $admin_data['username'];
 		}
 		return false;
-	}
-
-	public function logout()
-	{
-		// TODO
 	}
 
 	public function change_password($old, $new)
