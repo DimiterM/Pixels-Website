@@ -1,6 +1,6 @@
 <?php
 
-require_once "models/ads_new.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/ads_new.php";
 
 session_start();
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once "models/blogposts.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/blogposts.php";
 
 $model = new Blogposts();
 

@@ -6,15 +6,15 @@
 <body>
 
 <?php
-include "views/load_templates.php";
+include $_SERVER['DOCUMENT_ROOT'] . "views/load_templates.php";
 echo TemplateLoader::load("header_nav_template.html");
 ?>
 
 <section>
 <?php
 
-require_once "models/ads.php";
-require_once "models/big_pic.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/ads.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/big_pic.php";
 
 $ads_model = new Ads("ads");
 $ads_new = $ads_model->select_datetime_latest(24);

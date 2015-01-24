@@ -1,7 +1,7 @@
 <?php
 
-require_once "models/ads.php";
-require_once "models/ads_new.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/ads.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/ads_new.php";
 
 $model = new Ads($request['tablename']);
 

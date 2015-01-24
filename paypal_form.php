@@ -1,7 +1,7 @@
 <?php
 $_POST['qty'] = 1;
-require_once "models/paypal.php";
-require_once "models/config.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/paypal.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/config.php";
 
 session_start();
 

@@ -6,10 +6,10 @@
 <body>
 
 <?php
-include "models/config.php";
+include $_SERVER['DOCUMENT_ROOT'] . "models/config.php";
 global $PIC_WIDTH, $PIC_HEIGHT;
 
-include "views/load_templates.php";
+include $_SERVER['DOCUMENT_ROOT'] . "views/load_templates.php";
 echo TemplateLoader::load("header_nav_template.html");
 ?>
 
@@ -21,8 +21,8 @@ echo TemplateLoader::load("header_nav_template.html");
 <map name="pixels">
 <?php
 
-require "models/ads.php";
-require "views/areas.php";
+require $_SERVER['DOCUMENT_ROOT'] . "models/ads.php";
+require $_SERVER['DOCUMENT_ROOT'] . "views/areas.php";
 
 $model = new Ads("ads");
 $data = $model->get_basic_info();

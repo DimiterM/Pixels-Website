@@ -8,7 +8,7 @@
 <?php
 session_start();
 
-include "views/load_templates.php";
+include $_SERVER['DOCUMENT_ROOT'] . "views/load_templates.php";
 echo TemplateLoader::load("header_nav_template.html");
 ?>
 
@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	else
 	{
 		// login
-		require_once "models/admin.php";
+		require_once $_SERVER['DOCUMENT_ROOT'] . "models/admin.php";
 		$model = new Admin();
 		
 		$user_auth = $model->verify($_POST['username'], $_POST['password']);

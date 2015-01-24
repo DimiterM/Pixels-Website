@@ -1,7 +1,7 @@
 <?php
 
-require_once "models/config.php";
-require "models/ads.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/config.php";
+require $_SERVER['DOCUMENT_ROOT'] . "models/ads.php";
 
 $model = new Ads("ads");
 $ad_info = $model->get_details($_GET['id']);

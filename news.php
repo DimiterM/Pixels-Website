@@ -6,15 +6,15 @@
 <body>
 
 <?php
-include "views/load_templates.php";
+include $_SERVER['DOCUMENT_ROOT'] . "views/load_templates.php";
 echo TemplateLoader::load("header_nav_template.html");
 ?>
 
 <section>
 <?php
 
-require_once "models/blogposts.php";
-require_once "views/article.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "models/blogposts.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "views/article.php";
 
 $model = new Blogposts();
 $view = new Article();
