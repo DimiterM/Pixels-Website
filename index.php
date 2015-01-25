@@ -14,7 +14,7 @@ echo TemplateLoader::load("header_nav_template.html");
 ?>
 
 <section>
-<img src="images/big_pic.png" 
+<img src="/images/big_pic.png" 
 	width="<?php echo $PIC_WIDTH; ?>" height="<?php echo $PIC_HEIGHT; ?>" 
 	alt="Pixels" usemap="#pixels">
 

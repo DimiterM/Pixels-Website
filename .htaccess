@@ -1,0 +1,5 @@
+Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /
+RewriteRule (models|views|static)/* index.php [L, R]
+FallbackResource index.php
