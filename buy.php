@@ -30,8 +30,15 @@ $big_pic_model->build_shadow_pic(array_merge($ads_new, $newads_reserved));
 
 ?>
 
-<!-- TODO - form; onsubmit=pixels_reserve.php action=post -->
+<form method="post" action="pixels_reserve.php">
 
+	<input type="text" name="name">
+	<input type="url" name="link">
+	<input type="file" name="picture">
+	<hidden type="text" name="coords">
+	<input type="submit" value="Change password">
+
+</form>
 
 </section>
 
