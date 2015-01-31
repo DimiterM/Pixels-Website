@@ -3,7 +3,7 @@
 require_once "dbcon.php";
 require_once "ads.php";
 
-function reserve_area($data)
+function reserve_area($data, $file_to_upload)
 {
 	// check if the area is free; reserve it
 
@@ -31,12 +31,14 @@ function reserve_area($data)
 		{
 			$db->dbcon->rollBack();
 			//return false;
-			return "Area is not free!";
+			return "Area is reserved!";
 		}
 	}
 
 	// upload file and set $data['filename']
-	$is_uploaded = upload_picture($_FILES['picture'], $data['filename']);
+	$data['filename'] = "";
+	$is_uploaded = upload_picture($file_to_upload, $data['filename']);
+
 	if ($is_uploaded !== true)
 	{
 		$db->dbcon->rollBack();
@@ -115,9 +117,9 @@ function accept_new_ad($id)
 
 	if (file_exists($target_file))
 	{
-		$ad['filename'] = pathinfo($ad['filename'], PATHINFO_BASENAME) 
+		$ad['filename'] = pathinfo($ad['filename'], PATHINFO_FILENAME) 
 			. "_" . uniqid() 
-			. pathinfo($ad['filename'], PATHINFO_EXTENSION);
+			. "." . pathinfo($ad['filename'], PATHINFO_EXTENSION);
 
 		$target_file = $ADS_IMAGES_DIR . $ad['filename'];
 	}

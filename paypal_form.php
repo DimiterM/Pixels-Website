@@ -1,5 +1,5 @@
 <?php
-$_POST['qty'] = 1;
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "models/paypal.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "models/config.php";
 

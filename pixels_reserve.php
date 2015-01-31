@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "models/ads_new.php";
 
 session_start();
 
-$is_reserved = reserve_area($_POST['data']);
+$is_reserved = reserve_area($_POST, $_FILES['picture']);
 
 if (!is_numeric($is_reserved))
 {

@@ -33,11 +33,12 @@ $big_pic_model->build_shadow_pic(array_merge($ads_new, $newads_reserved));
 
 ?>
 
-<form method="post" action="pixels_reserve.php">
+<form method="post" action="pixels_reserve.php" enctype="multipart/form-data">
 	Name: <input type="text" name="name"><br/>
 	Link: <input type="url" name="link"><br/>
 	Picture: <input type="file" name="picture"><br/>
 	<input type="hidden" name="coords" value="">
+	<input type="hidden" name="qty" value="">
 	<input type="submit" value="Buy!">
 </form>
 
