@@ -18,6 +18,11 @@ class Ads extends DBConnection
 		$this->images_dir = ($tablename == "ads" ? $ADS_IMAGES_DIR : $NEWADS_IMAGES_DIR);
 	}
 
+	public function __get($name)
+	{
+		return $this->$name;
+	}
+
 	public function __destruct()
 	{
 		parent::__destruct();
@@ -157,9 +162,9 @@ class Ads extends DBConnection
             . ($not_is_intersect ? ", coords = GeomFromText(:coords)" : "")
             . " WHERE id = :id");
         $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':name', ($name != "" ? $this->dbcon->quote($name) : $old_record['name']));
-        $stmt->bindValue(':link', ($link != "" ? $this->dbcon->quote($link) : $old_record['link']));
-        $stmt->bindValue(':filename', ($filename != "" ? $this->dbcon->quote($filename) : $old_record['filename']));
+        $stmt->bindValue(':name', ($name != "" ? $name : $old_record['name']));
+        $stmt->bindValue(':link', ($link != "" ? $link : $old_record['link']));
+        $stmt->bindValue(':filename', ($filename != "" ? $filename : $old_record['filename']));
         if($not_is_intersect)
         {
         	$stmt->bindValue(':coords', $coords);

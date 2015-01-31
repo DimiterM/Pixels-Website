@@ -6,6 +6,9 @@
 <body>
 
 <?php
+include $_SERVER['DOCUMENT_ROOT'] . "models/config.php";
+global $PIC_WIDTH, $PIC_HEIGHT;
+
 include $_SERVER['DOCUMENT_ROOT'] . "views/load_templates.php";
 echo TemplateLoader::load("header_nav_template.html");
 ?>
@@ -31,14 +34,19 @@ $big_pic_model->build_shadow_pic(array_merge($ads_new, $newads_reserved));
 ?>
 
 <form method="post" action="pixels_reserve.php">
-
-	<input type="text" name="name">
-	<input type="url" name="link">
-	<input type="file" name="picture">
-	<hidden type="text" name="coords">
-	<input type="submit" value="Change password">
-
+	Name: <input type="text" name="name"><br/>
+	Link: <input type="url" name="link"><br/>
+	Picture: <input type="file" name="picture"><br/>
+	<input type="hidden" name="coords" value="">
+	<input type="submit" value="Buy!">
 </form>
+
+<div>
+<p>Select coordinates: </p>
+<img src="/images/big_pic_shadows.png" 
+	width="<?php echo $PIC_WIDTH; ?>" height="<?php echo $PIC_HEIGHT; ?>" 
+	alt="Pixels Reserved">
+</div>
 
 </section>
 

@@ -1,0 +1,19 @@
+<form method="post" action="admin_blogposts.php">
+
+	ID: <input type="number" name="id"><br/>
+	Title: <input type="text" name="title"><br/>
+	Body: <textarea name="body" rows="3" cols="15"/><br/>
+	Start date: <input type="datetime" name="from_datetime"><br/>
+	End date: <input type="datetime" name="to_datetime"><br/>
+
+	<select name="action">
+		<option value="select">Select</option>
+		<option value="insert">Insert</option>
+		<option value="update">Update</option>
+		<option value="delete">Delete</option>
+	</select><br/>
+	<input type="submit" value="Submit">
+
+</form>
+
+<br/><hr/>

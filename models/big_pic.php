@@ -27,7 +27,7 @@ class BigPic
 	{
 		// get big picture and add all reserved (newads table) and new (ads table) polygons as shadows
 		$big_pic_shadows = imagecreatefrompng($this->big_pic_filename);
-		$this->edit_image("copy_shadow", $ads, $big_pic);
+		$this->edit_image("copy_shadow", $ads, $big_pic_shadows);
 		imagepng($big_pic_shadows, $this->big_pic_shadows_filename);
 	}
 

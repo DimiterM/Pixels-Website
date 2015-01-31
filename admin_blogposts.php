@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "models/blogposts.php";
 
 $model = new Blogposts();
 
-switch ($request['action'])
+switch ($_REQUEST['action'])
 {
 	case "select":
 		if(isset($_REQUEST['id']))

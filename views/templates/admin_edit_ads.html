@@ -1,0 +1,26 @@
+
+<form method="post" action="admin_ads.php" enctype="multipart/form-data">
+
+	<select name="tablename">
+		<option value="ads">Ads</option>
+		<option value="newads">New ads</option>
+	</select><br/>
+	ID: <input type="number" name="id"><br/>
+	Name: <input type="text" name="name"><br/>
+	Link: <input type="url" name="link"><br/>
+	Picture: <input type="file" name="picture"><br/>
+	Coords: <input type="text" name="coords"><br/>
+	Start date: <input type="datetime" name="from_datetime"><br/>
+	End date: <input type="datetime" name="to_datetime"><br/>
+
+	<select name="action">
+		<option value="select">Select</option>
+		<option value="insert">Insert</option>
+		<option value="update">Update</option>
+		<option value="delete">Delete</option>
+	</select><br/>
+	<input type="submit" value="Submit">
+
+</form>
+
+<br/><hr/>

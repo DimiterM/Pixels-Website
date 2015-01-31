@@ -61,13 +61,14 @@ function reserve_area($data)
 function upload_picture($file_to_upload, &$filename)
 {
 	global $NEWADS_IMAGES_DIR;
+	$filename = basename($file_to_upload['name']);
 	$target_file = $NEWADS_IMAGES_DIR . basename($file_to_upload['name']);
 
 	if (file_exists($target_file))
 	{
-		$filename = pathinfo($file_to_upload['name'], PATHINFO_BASENAME) 
+		$filename = pathinfo($file_to_upload['name'], PATHINFO_FILENAME) 
 			. "_" . uniqid() 
-			. pathinfo($file_to_upload['name'], PATHINFO_EXTENSION);
+			. "." . pathinfo($file_to_upload['name'], PATHINFO_EXTENSION);
 
 		$target_file = $NEWADS_IMAGES_DIR . $filename;
 	}

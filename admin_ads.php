@@ -3,40 +3,48 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "models/ads.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "models/ads_new.php";
 
-$model = new Ads($request['tablename']);
+$model = new Ads($_REQUEST['tablename']);
 
-switch ($request['action'])
+switch ($_REQUEST['action'])
 {
 	case "select":
-		if(isset($_REQUEST['id']))
-			return $model->get_details($_REQUEST['id']);
-		return $model->select_filter(
-			$_REQUEST['name'], $_REQUEST['link'], $_REQUEST['coords'], 
-			$_REQUEST['from_datetime'], $_REQUEST['to_datetime']
-		);
+		{
+			if(isset($_REQUEST['id']))
+				return $model->get_details($_REQUEST['id']);
+			return $model->select_filter(
+				$_REQUEST['name'], $_REQUEST['link'], $_REQUEST['coords'], 
+				$_REQUEST['from_datetime'], $_REQUEST['to_datetime']
+			);
+		}
 	case "insert":
 		{
-			if(isset($_REQUEST['filename']) && $_FILES['picture'])
-				upload_picture($_FILES['picture'], $_REQUEST['filename']);
+			$filename = "";
+			if(isset($_FILES['picture']))
+				upload_picture($_FILES['picture'], $filename);
 			return $model->insert_ad($_REQUEST['name'], $_REQUEST['link'], 
-				$_REQUEST['coords'], $_REQUEST['filename']);
+				$_REQUEST['coords'], $filename);
 		}
     case "update":
 		{
-			if(isset($_REQUEST['filename']) && $_FILES['picture'])
+			$filename = "";
+			if($_FILES['picture'])
 			{
 				$old_filename = $model->get_details($_REQUEST['id'])['filename'];
-				$upload_result = upload_picture($_FILES['picture'], $_REQUEST['filename']);
+				$upload_result = upload_picture($_FILES['picture'], $filename);
 				if($upload_result)
-					unlink($old_filename);
+					unlink($model->images_dir . $old_filename);
 				else
 					return $upload_result;
 			}
 			return $model->update_ad($_REQUEST['name'], $_REQUEST['link'], 
-				$_REQUEST['coords'], $_REQUEST['filename']);
+				$_REQUEST['coords'], $filename, $_REQUEST['id']);
 		}
     case "delete":
-        return $model->delete_ad($_REQUEST['id']);
+    {
+    	$filename = $model->get_details($_REQUEST['id'])['filename'];
+    	unlink($model->images_dir . $filename);
+    	return $model->delete_ad($_REQUEST['id']);
+    }
 }
 
 /**
