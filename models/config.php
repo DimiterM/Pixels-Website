@@ -28,6 +28,7 @@ $PAYPAL_VERSION = '74.0';
 $PAYPAL_ENDPOINT = 'https://api-3t.sandbox.paypal.com/nvp';
 $PAYPAL_CHECKOUT_URL = 'https://www.sandbox.paypal.com/';
 $CACERTFILE = $_SERVER['DOCUMENT_ROOT'] . "static/cacert.pem";
+$PAYPAL_RETURN_URL = "http://localhost/paypal_return.php";
 $PRICE_PER_10x10_IN_EUR = 100.0;
 
 ?>

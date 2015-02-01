@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Buy pixels - More than just 10^6 pixels</title>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
 
@@ -28,9 +30,6 @@ $newads_reserved = $newads_model->select_datetime_latest(1);
 $big_pic_model = new BigPic();
 $big_pic_model->build_shadow_pic(array_merge($ads_new, $newads_reserved));
 
-// TODO - canvas - $big_pic_model->big_pic_shadow_filename
-// + hidden fields in the form for the polygon
-
 ?>
 
 <form method="post" action="pixels_reserve.php" enctype="multipart/form-data">
@@ -42,11 +41,12 @@ $big_pic_model->build_shadow_pic(array_merge($ads_new, $newads_reserved));
 	<input type="submit" value="Buy!">
 </form>
 
-<div>
 <p>Select coordinates: </p>
-<img src="/images/big_pic_shadows.png" 
-	width="<?php echo $PIC_WIDTH; ?>" height="<?php echo $PIC_HEIGHT; ?>" 
-	alt="Pixels Reserved">
+<div id="coordsSelector" width="<?php echo $PIC_WIDTH; ?>" height="<?php echo $PIC_HEIGHT; ?>">
+	<img id="coordsShadows" src="/images/big_pic_shadows.png" 
+		width="<?php echo $PIC_WIDTH; ?>" height="<?php echo $PIC_HEIGHT; ?>" 
+		alt="Pixels Reserved"/>
+    <canvas id="coordsCanvas" width="<?php echo $PIC_WIDTH; ?>" height="<?php echo $PIC_HEIGHT; ?>"></canvas>
 </div>
 
 </section>
@@ -54,5 +54,7 @@ $big_pic_model->build_shadow_pic(array_merge($ads_new, $newads_reserved));
 <?php
 echo TemplateLoader::load("footer_template.html");
 ?>
+
+<script type="text/javascript" src="js/buy.js"></script>
 </body>
 </html>

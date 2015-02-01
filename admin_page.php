@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Admin page - More than just 10^6 pixels</title>
+	<meta charset="utf-8"/>
 </head>
 <body>
 

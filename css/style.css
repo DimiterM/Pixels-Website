@@ -1,0 +1,16 @@
+#coordsSelector
+{
+    display: inline-block;
+}
+
+#coordsShadows
+{
+	position: absolute;
+	z-index: 1;
+}
+
+#coordsCanvas
+{
+    position: relative;
+    z-index: 20;
+}
