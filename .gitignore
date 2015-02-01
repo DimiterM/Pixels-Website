@@ -1,5 +1,4 @@
 images/*
 !images/big_pic_template.png
 !images/pixel_10x10.png
-
-test.php
+!images/background_pattern.png

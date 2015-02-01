@@ -3,6 +3,7 @@
 <head>
 	<title>More than just 10^6 pixels</title>
 	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
 
