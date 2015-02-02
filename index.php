@@ -36,8 +36,22 @@ echo $view->data_to_html($data);
 </map>
 </section>
 
+<div id='PopUp' style='display: none; position: absolute; left: 100px; top: 50px; border: solid black 1px; padding: 10px; background-color: rgb(200,100,100); text-align: justify; font-size: 12px; width: 135px;'>
+	<ul>
+		<li><a>ID:</a><a id="id"> </a> </li>
+		<li><a>owner:</a><a id="name"></a></li>
+		<li><a>link:</a><a id="link"></a></li>
+		<li><a>coordinates:</a><a id="coords"></a></li>
+		<li><a>date of purchase:</a><a id="datestamp"></a></li>
+		<li><img id='picture' src=""/></li>
+	</ul>
+</div>
+
 <?php
 echo TemplateLoader::load("footer_template.html");
 ?>
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="js/hover_info.js"></script>
 </body>
 </html>
