@@ -23,16 +23,22 @@ $view = new Article();
 
 if(!isset($_GET['id']))
 {
-	$news = $model->get_all( (isset($_GET['page']) ? $_GET['page'] : 0) );
+	$page = (isset($_GET['page']) ? $_GET['page'] : 0);
+	$news_per_page = 10;
+	$news = $model->get_all($page, $news_per_page);
 	foreach ($news as $n => $article)
 	{
 		echo $view->data_to_html($article);
 	}
+
+	$hasNext = ($model->count() > ($page + 1) * $news_per_page);
+	echo $view->page_buttons($page, $hasNext);
 }
 else
 {
 	$article = $model->get_details($_GET['id']);
 	echo $view->data_to_html($article);
+	echo $view->return_button();
 }
 
 ?>

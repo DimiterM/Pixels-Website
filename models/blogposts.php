@@ -21,6 +21,7 @@ class Blogposts extends DBConnection
 		$stmt = $this->dbcon->prepare(
             "SELECT id, title, left(body, 60) as body, datetime 
             FROM blogposts 
+            ORDER BY datetime DESC
             LIMIT ? OFFSET ?");
 		$stmt->bindValue(1, $count, PDO::PARAM_INT);
 		$stmt->bindValue(2, $page * $count, PDO::PARAM_INT);
@@ -87,6 +88,17 @@ class Blogposts extends DBConnection
 
         $stmt->closeCursor();
         return $result;
+	}
+
+	public function count()
+	{
+		$stmt = $this->dbcon->prepare(
+            "SELECT COUNT(1) FROM blogposts");
+        $stmt->execute();
+        
+        $row = $stmt->fetch(PDO::FETCH_NUM);
+        $stmt->closeCursor();
+        return $row[0];
 	}
 }
 

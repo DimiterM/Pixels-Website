@@ -19,6 +19,21 @@ class Article
 		$result .= "</article>";
 		return $result;
 	}
+
+	public function return_button()
+	{
+		// one article
+		return "<a href=\"news.php\">All news</a>";
+	}
+
+	public function page_buttons($page, $hasNext)
+	{
+		// list of articles
+		$prev = ($page > 0 ? "<a href=\"?page=" . ($page - 1) . "\">Previous page</a>" : "");
+		$next = ($hasNext ? "<a href=\"?page=" . ($page + 1) . "\">Next page</a>" : "");
+
+		return $prev . $next;
+	}
 }
 
 
