@@ -63,6 +63,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 elseif(isset($_SESSION['username'])) 	// && $_SERVER['REQUEST_METHOD'] == "GET"
 {
 	// admin is online
+	echo "<section id='dbQueryResult'></section>";
 	echo TemplateLoader::load("admin_info_form.html");
 	echo TemplateLoader::load("admin_edit_ads.html");
 	echo TemplateLoader::load("admin_edit_blogposts.html");
@@ -79,5 +80,8 @@ else 	  // !isset($_SESSION['username']) && $_SERVER['REQUEST_METHOD'] == "GET"
 <?php
 echo TemplateLoader::load("footer_template.html");
 ?>
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="js/admin_page.js"></script>
 </body>
 </html>

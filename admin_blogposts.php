@@ -4,22 +4,42 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "models/blogposts.php";
 
 $model = new Blogposts();
 
+$result = array();
+
 switch ($_REQUEST['action'])
 {
 	case "select":
-		if(isset($_REQUEST['id']))
-			return $model->get_details($_REQUEST['id']);
-		return $model->select_filter(
+	{
+		if($_REQUEST['id'])
+		{
+			$result = array($model->get_details($_REQUEST['id']));
+			break;
+		}
+		$result = $model->select_filter(
 			$_REQUEST['title'], $_REQUEST['body'], 
 			$_REQUEST['from_datetime'], $_REQUEST['to_datetime']
 		);
+		break;
+	}
 	case "insert":
-		return $model->insert_post($_REQUEST['title'], $_REQUEST['body']);
+	{
+		$result = $model->insert_post($_REQUEST['title'], $_REQUEST['body']);
+		break;
+	}
     case "update":
-        return $model->update_post($_REQUEST['id'], $_REQUEST['title'], $_REQUEST['body']);
+    {
+        $result = $model->update_post($_REQUEST['id'], $_REQUEST['title'], $_REQUEST['body']);
+        break;
+    }
     case "delete":
-        return $model->delete_post($_REQUEST['id']);
+    {
+        $result = $model->delete_post($_REQUEST['id']);
+        break;
+    }
 }
+
+echo json_encode($result);
+
 
 /**
 * SELECT:

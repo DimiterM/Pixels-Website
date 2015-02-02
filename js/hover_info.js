@@ -2,7 +2,7 @@
 var info = {};
 
 $(document).ready( function(event) {
-    $('area').hover( function(event) {
+	$('area').hover( function(event) {
 		showInfo(this, event);
 	}, function() {
 		hideInfo(this);
