@@ -16,6 +16,7 @@ class DBConnection
             global $HOST, $PORT, $DB, $USER, $PASS;
             $this->dbcon = new PDO("mysql:host=" . $HOST . ";port=" . $PORT . ";dbname=" . $DB, $USER, $PASS);
             $this->dbcon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->dbcon->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, "SET NAMES utf8");
         }
         catch (PDOException $e)
         {

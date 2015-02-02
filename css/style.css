@@ -157,7 +157,7 @@ table tr td
 /* Canvas in buy.php */
 #coordsSelector
 {
-    display: inline-block;
+	display: inline-block;
 }
 
 #coordsShadows
@@ -168,6 +168,16 @@ table tr td
 
 #coordsCanvas
 {
-    position: relative;
-    z-index: 20;
+	position: relative;
+	z-index: 20;
+}
+
+/* PopUp in index.php */
+#PopUp
+{
+	display: none;
+	position: absolute;
+	border: solid black 1px;
+	background-color: #47433F;
+	text-align: justify;
 }

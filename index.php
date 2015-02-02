@@ -36,15 +36,14 @@ echo $view->data_to_html($data);
 </map>
 </section>
 
-<div id='PopUp' style='display: none; position: absolute; left: 100px; top: 50px; border: solid black 1px; padding: 10px; background-color: rgb(200,100,100); text-align: justify; font-size: 12px; width: 135px;'>
-	<ul>
-		<li><a>ID:</a><a id="id"> </a> </li>
-		<li><a>owner:</a><a id="name"></a></li>
-		<li><a>link:</a><a id="link"></a></li>
-		<li><a>coordinates:</a><a id="coords"></a></li>
-		<li><a>date of purchase:</a><a id="datestamp"></a></li>
-		<li><img id='picture' src=""/></li>
-	</ul>
+<div id='PopUp'>
+	<table>
+		<tr><td>ID:</td><td id="id"></td></tr>
+		<tr><td>Owner:</td><td id="name"></td></tr>
+		<tr><td>Link:</td><td id="link"></td></tr>
+		<tr><td>Coordinates:</td><td id="coords"></td></tr>
+		<tr><td>Date of purchase:</td><td id="datestamp"></td></tr>
+	</table>
 </div>
 
 <?php

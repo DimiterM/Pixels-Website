@@ -1,9 +1,10 @@
+// list of data for all hovered ads
 var info = {};
 
-$(document).ready( function(){
-    $('area').hover( function(){
-		showInfo(this);
-	}, function(){
+$(document).ready( function(event) {
+    $('area').hover( function(event) {
+		showInfo(this, event);
+	}, function() {
 		hideInfo(this);
 	});
 });
@@ -12,49 +13,60 @@ function showPos(event, id) {
 	var el, x, y;
 
 	el = document.getElementById('PopUp');
+
 	if (window.event) {
-		x = window.event.clientX + document.documentElement.scrollLeft
-		+ document.body.scrollLeft;
-		y = window.event.clientY + document.documentElement.scrollTop +
-		+ document.body.scrollTop;
+		x = window.event.clientX 
+			+ document.documentElement.scrollLeft
+			+ document.body.scrollLeft;
+		y = window.event.clientY 
+			+ document.documentElement.scrollTop 
+			+ document.body.scrollTop;
 	}
 	else {
 		x = event.clientX + window.scrollX;
 		y = event.clientY + window.scrollY;
 	}
-	x -= 2;
-	y += 13;
+	
+	x -= 1;
+	y += 1;
+
 	el.style.left = x + "px";
 	el.style.top = y + "px";
 	el.style.display = "block";
+
 	//info feed
-	var target = $("PopUp > ul > li");
-	target.find("#id").innerHTML = info[id].id;
-	target.find("#name").innerHTML = info[id].name;
-	target.find("#link").innerHTML = info[id].link;
-	target.find("#coords").innerHTML = info[id].coords;
-	target.find("#datestamp").innerHTML = info[id].datestamp;
-	target.find("#picture").attr('src', "/images/ads/"+filename);
+	var target = $("#PopUp tr");
+	target.find("#id").html(info[id].id);
+	target.find("#name").html(info[id].name);
+	target.find("#link").html(info[id].link);
+	target.find("#coords").html(info[id].coords);
+	target.find("#datestamp").html(info[id].datetime);
 }
 
-function showInfo(id)
+function showInfo(element, event)
 {
-	var id = $(this).attr("alt");
-	if( info[id] == undefined )
+	var id = $(element).attr("alt");
+	if(info[id] == undefined)
 	{
-		info[id] = $.get(
-			'hover_areas.php',
-			id		
+		$.get(
+			"hover_areas.php",
+			{id: id},
+			"application/json"	
 		).done(function(data) {
-		data = JSON.parse(data);
+			//show info bubble
+			info[id] = JSON.parse(data);
+			showPos(event, id);
 		});	
 	}
-	//show info bubble
-	showPos(event, id);
+	else
+	{
+		// data has already been requested before
+		showPos(event, id);
+	}
 }
 
 function hideInfo(area)
 {
 	//hide info bubble
-	$('#PopUp').style.display = 'none';
+	$('#PopUp').hide();
 }
