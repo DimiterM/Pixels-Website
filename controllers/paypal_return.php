@@ -33,7 +33,7 @@ if( isset($_GET['token']) && !empty($_GET['token']) )
         // now we move the ad to the ads table
         accept_new_ad($_SESSION['id']);
         echo "Success! <br/>";
-        echo "<a href='index.php'>Go back to main page</a>";
+        echo "<a href='/index.php'>Go back to main page</a>";
     }
     else
     {

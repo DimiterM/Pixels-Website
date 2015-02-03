@@ -12,6 +12,6 @@ if (!is_numeric($is_reserved))
 }
 
 $_SESSION['id'] = $is_reserved;
-require_once "paypal_form.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "controllers/paypal_form.php";
 
 ?>

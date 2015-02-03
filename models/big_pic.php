@@ -8,11 +8,14 @@ class BigPic
 	public $big_pic_filename;
 	public $big_pic_shadows_filename;
 
-	public function __construct()
+	private $DOCUMENT_ROOT;
+
+	public function __construct($DOCUMENT_ROOT)
 	{
-		$this->big_pic_template = $_SERVER['DOCUMENT_ROOT'] . "images/big_pic_template.png";
-		$this->big_pic_filename = $_SERVER['DOCUMENT_ROOT'] . "images/big_pic.png";
-		$this->big_pic_shadows_filename = $_SERVER['DOCUMENT_ROOT'] . "images/big_pic_shadows.png";
+		$this->DOCUMENT_ROOT = $DOCUMENT_ROOT;
+		$this->big_pic_template = $DOCUMENT_ROOT . "images/big_pic_template.png";
+		$this->big_pic_filename = $DOCUMENT_ROOT . "images/big_pic.png";
+		$this->big_pic_shadows_filename = $DOCUMENT_ROOT . "images/big_pic_shadows.png";
 	}
 
 	public function build_big_pic($ads)
@@ -42,7 +45,7 @@ class BigPic
 
 	private function copy_image($ad, $big_img)
 	{
-		$ad_pic = imagecreatefrompng($ad['filename']);
+		$ad_pic = imagecreatefrompng($this->DOCUMENT_ROOT . $ad['filename']);
 		imagecopy($big_img, $ad_pic, 
 			$ad['x0'], $ad['y0'], 0, 0, $ad['width'], $ad['height']);
 	}

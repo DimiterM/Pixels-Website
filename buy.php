@@ -27,12 +27,12 @@ $ads_new = $ads_model->select_datetime_latest(24);
 $newads_model = new Ads("newads");
 $newads_reserved = $newads_model->select_datetime_latest(1);
 
-$big_pic_model = new BigPic();
+$big_pic_model = new BigPic($_SERVER['DOCUMENT_ROOT']);
 $big_pic_model->build_shadow_pic(array_merge($ads_new, $newads_reserved));
 
 ?>
 
-<form method="post" action="pixels_reserve.php" enctype="multipart/form-data">
+<form method="post" action="controllers/pixels_reserve.php" enctype="multipart/form-data">
 	Name: <input type="text" name="name"><br/>
 	Link: <input type="url" name="link"><br/>
 	Picture: <input type="file" name="picture"><br/>

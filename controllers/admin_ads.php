@@ -13,7 +13,7 @@ switch ($_REQUEST['action'])
 		{
 			if($_REQUEST['id'])
 			{
-				$result = $model->get_details($_REQUEST['id']);
+				$result = array($model->get_details($_REQUEST['id']));
 				break;
 			}
 			$result = $model->select_filter(

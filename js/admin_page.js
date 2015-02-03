@@ -12,9 +12,11 @@ $(".dbQuery").submit(function(event){
         success: function (data) {
             data = JSON.parse(data);
 			handle_result(data);
+			console.log(data);
         },
         error: function(error) {
-        	console.log(error);
+        	$("#dbQueryResult").empty();
+        	$("#dbQueryResult").append("<p>Error!!! :X</p>");
         },
         cache: false,
         contentType: false,
@@ -27,6 +29,8 @@ $(".dbQuery").submit(function(event){
 
 function handle_result(data)
 {
+	$("#dbQueryResult").empty();
+
 	if(data === true)
 	{
 		$("#dbQueryResult").append("<p>Success! :)</p>");
@@ -35,6 +39,11 @@ function handle_result(data)
 	else if(data === false)
 	{
 		$("#dbQueryResult").append("<p>Failure! ;(</p>");
+		return;
+	}
+	else if(data[0] === false)
+	{
+		$("#dbQueryResult").append("<p>Empty result set.</p>");
 		return;
 	}
 
@@ -74,12 +83,12 @@ function make_table(data)
 }
 
 
+// put 'toggle' buttons to hide forms (for better visibility)
 $(document).ready(function(){
 	$("<button type=\"button\" class=\"toggler\">Toggle form</button>")
 		.insertBefore(".dbQuery, .userForm");
 
 	$(".toggler").click(function(){
-		console.log($(this).next());
 		$(this).next().toggle();
 	});
 });
