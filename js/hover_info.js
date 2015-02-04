@@ -41,6 +41,9 @@ function showPos(event, id) {
 	target.find("#link").html(info[id].link);
 	target.find("#coords").html(info[id].coords);
 	target.find("#datestamp").html(info[id].datetime);
+
+	// put img
+	$("#picture").attr('src', info[id].filename);
 }
 
 function showInfo(element, event)
@@ -49,7 +52,7 @@ function showInfo(element, event)
 	if(info[id] == undefined)
 	{
 		$.get(
-			"hover_areas.php",
+			"controllers/hover_areas.php",
 			{id: id},
 			"application/json"	
 		).done(function(data) {

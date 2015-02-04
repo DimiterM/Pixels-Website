@@ -44,6 +44,7 @@ echo $view->data_to_html($data);
 		<tr><td>Coordinates:</td><td id="coords"></td></tr>
 		<tr><td>Date of purchase:</td><td id="datestamp"></td></tr>
 	</table>
+	<img id="picture" src=""/>
 </div>
 
 <?php
