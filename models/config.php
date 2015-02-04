@@ -20,9 +20,9 @@ $NEWADS_IMAGES_DIR = $_SERVER['DOCUMENT_ROOT'] . "images/newads/";
 
 // Paypal
 $PAYPAL_CREDENTIALS = array(
-      'USER' => 'admin2_api1.pixels.bg',
-      'PWD' => '6LHND3H5K68PTUKA',
-      'SIGNATURE' => 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-AeSsxZEYXqRVET-abkewsLp6rxy-',
+      'USER' => '',
+      'PWD' => '',
+      'SIGNATURE' => '',
    );
 $PAYPAL_VERSION = '74.0';
 $PAYPAL_ENDPOINT = 'https://api-3t.sandbox.paypal.com/nvp';
